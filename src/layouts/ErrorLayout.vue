@@ -120,7 +120,7 @@ const rootClasses = computed(() => ({
   }
 
   .router-link:hover {
-    color: theme('colors.primary.light');
+    color: theme('colors.primary.500');
   }
 }
 
