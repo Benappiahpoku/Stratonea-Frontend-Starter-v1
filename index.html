@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#1F3A8A" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Stratonea App - Optimized for Ghana" />
+
+    <!-- Preconnect to critical domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+
+    <!-- Enable PWA capabilities -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Optimize text rendering -->
+    <meta name="text-size-adjust" content="100%" />
+
+    <!-- Disable automatic phone number detection for better performance -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>Stratonea App</title>
+
+    <!-- Add critical CSS inline for faster first paint -->
+    <style>
+      /* Add loading state styles */
+      #app:empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #f9fafb;
+      }
+      #app:empty::before {
+        content: 'Loading...';
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: #1f3a8a;
+      }
+      /* Add system font fallbacks */
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add noscript message for users without JavaScript -->
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: system-ui, sans-serif">
+        Please enable JavaScript to use this application.
+      </div>
+    </noscript>
+
+    <div id="app"></div>
+
+    <!-- Add connection status indicator for instant feedback -->
+    <script>
+      window.addEventListener('offline', () => {
+        document.body.classList.add('is-offline')
+      })
+      window.addEventListener('online', () => {
+        document.body.classList.remove('is-offline')
+      })
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

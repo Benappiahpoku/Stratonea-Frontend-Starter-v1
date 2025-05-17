@@ -1,0 +1,36 @@
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import App from './App.vue'
+import router from './router'
+import './style.css'
+
+// Import base components
+import AppButton from './components/base/AppButton.vue'
+import AppForm from './components/base/AppForm.vue'
+import AppInput from './components/base/AppInput.vue'
+import ErrorBoundary from './components/base/ErrorBoundary.vue'
+import LoadingSpinner from './components/base/LoadingSpinner.vue'
+import OfflineIndicator from './components/base/OfflineIndicator.vue'
+
+// Create Vue application
+const app = createApp(App)
+
+// Configure Pinia with persistence
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+
+// Register base components globally
+app.component('AppButton', AppButton)
+app.component('AppForm', AppForm)
+app.component('AppInput', AppInput)
+app.component('ErrorBoundary', ErrorBoundary)
+app.component('LoadingSpinner', LoadingSpinner)
+app.component('OfflineIndicator', OfflineIndicator)
+
+// Use plugins
+app.use(pinia)
+app.use(router)
+
+// Mount the app
+app.mount('#app')
