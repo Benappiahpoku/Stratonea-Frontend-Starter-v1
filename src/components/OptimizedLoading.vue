@@ -52,7 +52,8 @@
         v-if="showRetry"
         @click="$emit('retry')"
         class="mt-4 px-4 py-2 bg-primary-600 text-white text-sm rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        :disabled="isRetrying"
+        
+        
       >
         <span v-if="!isRetrying">Try Again</span>
         <span v-else>Retrying...</span>

@@ -99,16 +99,17 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 300,
     rollupOptions: {
+      input: {
+        main: './index.html'
+      },
       output: {
         manualChunks: {
-          'vue-core': ['vue', 'vue-router', 'pinia'],
-          'essential-utils': ['./src/composables/useNetworkStatus'],
-          'offline-features': ['./src/composables/useOfflineStorage'],
-          'enhanced-features': ['./src/components/enhanced']
+          'vue-core': ['vue', 'vue-router'],
+          utils: ['axios']
         }
       }
     },
-    target: ['es2018', 'chrome61'],
+    target: ['es2020', 'chrome80', 'safari14'], // Updated targets to support top-level await
     minify: 'terser',
     terserOptions: {
       compress: {

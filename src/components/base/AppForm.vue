@@ -28,6 +28,7 @@
         variant="secondary"
         type="button"
         :disabled="submitting"
+        :loading="false"
         @click="$emit('cancel')"
       >
         {{ cancelText }}
@@ -35,10 +36,11 @@
 
       <!-- Submit Button -->
       <AppButton
-        :type="submitButtonType"
+        :type="submitButtonType || 'submit'"
         :loading="submitting"
         :disabled="submitting || (offline && !offlineSubmitEnabled)"
-        :text="submitText"
+        :text="buttonText"
+        variant="primary"
       />
     </div>
 
@@ -156,6 +158,8 @@ function handleRetry() {
   errorMessage.value = ''
   emit('retry')
 }
+
+const buttonText = computed(() => props.submitText || 'Submit')
 </script>
 
 <style scoped>

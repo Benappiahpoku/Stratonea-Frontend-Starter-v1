@@ -7,7 +7,7 @@ export interface NetworkInfo {
   downlink: number
   rtt: number
   saveData: boolean
-  lastOnlineTime?: number
+  lastOnlineTime: number | null // Changed from optional to nullable
   reconnectionAttempts: number
   connectionQuality: 'excellent' | 'good' | 'fair' | 'poor'
   isMetered?: boolean
@@ -35,7 +35,8 @@ export function useNetworkStatus() {
     rtt: 0,
     saveData: false,
     reconnectionAttempts: 0,
-    connectionQuality: 'good'
+    connectionQuality: 'good',
+    lastOnlineTime: null
   })
 
   // Calculate connection quality based on current metrics
@@ -58,30 +59,31 @@ export function useNetworkStatus() {
   // Update network type and quality information
   const updateNetworkInfo = () => {
     const connection = (navigator as any).connection
-    const isCurrentlyOnline = navigator.onLine
     
     if (connection) {
-      const quality = calculateConnectionQuality(connection.downlink, connection.rtt)
-      
       networkInfo.value = {
-        ...networkInfo.value,
-        isOnline: isCurrentlyOnline,
-        connectionType: connection.type,
-        effectiveType: connection.effectiveType,
-        downlink: connection.downlink,
-        rtt: connection.rtt,
-        saveData: connection.saveData,
-        isMetered: connection.metered,
-        connectionQuality: quality,
-        lastOnlineTime: isCurrentlyOnline ? Date.now() : networkInfo.value.lastOnlineTime,
-        reconnectionAttempts: isCurrentlyOnline ? 0 : networkInfo.value.reconnectionAttempts + 1
+        isOnline: navigator.onLine,
+        connectionType: connection.type || 'unknown',
+        effectiveType: connection.effectiveType || 'unknown',
+        downlink: connection.downlink || 0,
+        rtt: connection.rtt || 0,
+        saveData: connection.saveData || false,
+        isMetered: connection.type === 'cellular',
+        connectionQuality: calculateConnectionQuality(connection.downlink, connection.rtt),
+        lastOnlineTime: navigator.onLine ? Date.now() : null,
+        reconnectionAttempts: navigator.onLine ? 0 : networkInfo.value.reconnectionAttempts + 1
       }
     } else {
       networkInfo.value = {
-        ...networkInfo.value,
-        isOnline: isCurrentlyOnline,
-        lastOnlineTime: isCurrentlyOnline ? Date.now() : networkInfo.value.lastOnlineTime,
-        reconnectionAttempts: isCurrentlyOnline ? 0 : networkInfo.value.reconnectionAttempts + 1
+        isOnline: navigator.onLine,
+        connectionType: 'unknown',
+        effectiveType: 'unknown',
+        downlink: 0,
+        rtt: 0,
+        saveData: false,
+        connectionQuality: 'good',
+        lastOnlineTime: navigator.onLine ? Date.now() : null,
+        reconnectionAttempts: 0
       }
     }
   }

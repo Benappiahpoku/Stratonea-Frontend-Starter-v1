@@ -29,9 +29,9 @@
         v-bind="$attrs"
         :value="modelValue"
         :type="inputType"
-        :placeholder="placeholder"
+        :placeholder="placeholder || ''"
         :required="required"
-        :disabled="disabled"
+        :disabled="disabled ?? false"
         :class="[
           'block w-full rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 shadow-sm text-base',
           'min-h-[48px]', // Ghana-optimized touch target
@@ -127,7 +127,7 @@ interface Props {
   label?: string
   placeholder?: string
   type?: string
-  required?: boolean
+  required: boolean // Changed from optional to required with default
   disabled?: boolean
   error?: string
   helperText?: string
@@ -139,7 +139,8 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   type: 'text',
   required: false,
-  disabled: false
+  disabled: false,
+  placeholder: ''
 })
 
 const emit = defineEmits<{

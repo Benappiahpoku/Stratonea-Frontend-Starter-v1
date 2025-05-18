@@ -57,12 +57,14 @@ import { computed, ref } from 'vue'
 interface Props {
   variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'success'
   size?: 'sm' | 'md' | 'lg'
-  type?: 'button' | 'submit' | 'reset'
+  type: 'button' | 'submit' | 'reset' 
   text?: string
-  loading?: boolean
-  disabled?: boolean
+  loading: boolean  // Changed from optional to required with default
+  disabled: boolean // Changed from optional to required with default
+  onClick?: (event: MouseEvent) => void
 }
 
+// Provide non-undefined defaults for all optional props
 const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
   size: 'md',
@@ -70,6 +72,7 @@ const props = withDefaults(defineProps<Props>(), {
   text: '',
   loading: false,
   disabled: false
+
 })
 
 const emit = defineEmits<{

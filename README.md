@@ -1,6 +1,6 @@
 # Stratonea Vue.js Boilerplate
 
-A specialized Vue.js boilerplate optimized for web development in Ghana, with built-in support for common challenges like intermittent connectivity, varying network speeds, and mobile-first design.
+A specialized Vue.js boilerplate optimized for web development in Ghana, with built-in support for common challenges like intermittent connectivity, varying network speeds, and mobile-first design. Built with Vue 3, TypeScript, and Tailwind CSS.
 
 ## 🌍 Overview
 
@@ -207,7 +207,7 @@ All UI components are designed with:
 
 ## 📄 License
 
-[Your License Here]
+MIT License
 
 ## 🙏 Acknowledgments
 

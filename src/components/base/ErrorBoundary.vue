@@ -16,10 +16,10 @@
             Unable to connect to the internet. Your work is safely saved.
           </p>
           <div class="mt-4 flex gap-3">
-            <app-button variant="primary" @click="retry" :loading="isRetrying">
+            <app-button variant="primary"  type="button" :disabled="false" @click="retry" :loading="isRetrying">
               Try Again
             </app-button>
-            <app-button variant="secondary" @click="workOffline">
+            <app-button   type="button"  :disabled="false"  :loading="false" variant="secondary" @click="workOffline">
               Work Offline
             </app-button>
           </div>
@@ -37,7 +37,7 @@
             {{ getSimpleErrorMessage }}
           </p>
           <div class="mt-4">
-            <app-button variant="primary" @click="retry" :loading="isRetrying">
+            <app-button variant="primary" type="button" :disabled="false"  @click="retry" :loading="isRetrying">
               Try Again
             </app-button>
           </div>
