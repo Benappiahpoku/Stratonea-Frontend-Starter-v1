@@ -126,6 +126,49 @@ A feature is considered complete when:
 
 TypeScript provides strong typing and enhanced developer experience, which is particularly valuable when building complex applications for Ghanaian users where reliability is crucial due to connectivity challenges.
 
+## Stratonea Tailwind Usage Instruction
+
+Always use Tailwind CSS utility classes directly in the template markup for component styling. Do not use `@apply` inside `<style>` blocks in Vue files. For most cases, prefer utility classes in the HTML/template for clarity, maintainability, and mobile-first workflow.
+
+## Routing & Layout System
+
+This project uses Vue Router with a layout system. All main routes are defined in index.ts and rendered as children of a layout component (e.g., default.vue). Each layout must include a `<router-view />` to display the active page from views. Use this structure for all new pages and navigation.
+
+
+## Stratonea App Header  Guideline
+
+For every new app, always use the following header pattern:
+
+- **Left:** Stratonea logo (SVG or image)
+- **Right:** App name (text, bold, clear, and accessible)
+
+**Example Vue/Tailwind Markup:**
+
+```vue
+<template>
+  <header class="flex items-center justify-between px-4 py-3 bg-primary text-white shadow-md">
+    <!-- Stratonea Logo on the left -->
+    <img src="@/assets/stratonea-logo.svg" alt="Stratonea Logo" class="h-8 w-auto" />
+    <!-- App Name on the right -->
+    <span class="text-lg font-bold tracking-wide">{{ appName }}</span>
+  </header>
+</template>
+
+<script setup lang="ts">
+// ===== Constants & Config =====
+const appName = 'Ghana Weather App' // Change this per app
+</script>
+```
+
+**Guidelines:**
+- The logo should always be on the left, sized for mobile (min 32px, max 48px height).
+- The app name should be on the right, bold, and easy to read.
+- Use Tailwind utility classes for spacing, color, and responsiveness.
+- Ensure header is accessible (alt text, sufficient contrast).
+
+
+
+
 ### 1. **Strict TypeScript Configuration**
 
 Use strict mode in `tsconfig.json` to catch potential issues early:
