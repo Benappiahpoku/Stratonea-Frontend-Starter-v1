@@ -167,6 +167,60 @@ const appName = 'Ghana Weather App' // Change this per app
 - Ensure header is accessible (alt text, sufficient contrast).
 
 
+# Coding Protocol
+
+## Core Principles
+
+- **Minimal Code**: Write only the absolute minimum code required to accomplish the task
+- **Focused Changes**: Make precise edits related only to the current task
+- **No Scope Creep**: Avoid unrelated changes or sweeping modifications
+- **Code Quality**:
+  - Make code modular and testable
+  - Keep functions small and focused
+  - Use clear naming conventions
+  - Add necessary comments
+- **Preserve Functionality**: Don't break existing working code
+- **Clear Instructions**: Explicitly state any required:
+  - Configuration steps
+  - Environment setup
+  - Dependencies
+  - External service setup (e.g. Supabase, Vercel, Firebase, AWS)
+
+## Implementation Guide
+
+```typescript
+// Example of minimal, focused change
+function updateUser(id: string, data: Partial<User>): Promise<void> {
+  // Only update specified fields
+  return db.users.update(id, data)
+}
+
+// NOT THIS - too broad, unrelated changes
+function updateUser(id: string, data: User): Promise<void> {
+  // Unrelated logging change
+  setupLogging()
+  // Unrelated schema changes  
+  validateSchema()
+  // Too many responsibilities
+  return db.users.update(id, {
+    ...data,
+    updatedAt: new Date(),
+    // Unrelated field additions
+    newField: 'value'
+  })
+}
+```
+
+## Change Request Format
+
+```markdown
+Task: [Brief description]
+Changes:
+- File: path/to/file
+- Purpose: [What this change accomplishes]
+- Dependencies: [Any required setup/config]
+```
+
 
 
 ### 1. **Strict TypeScript Configuration**
