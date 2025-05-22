@@ -71,6 +71,9 @@ const props = defineProps<{
   id?: string
 }>()
 
+const emit = defineEmits<{
+  (e: 'offline-mode'): void
+}>()
 // Error state
 const error = ref<Error | null>(null)
 const isRetrying = ref(false)
@@ -166,9 +169,6 @@ const workOffline = () => {
   emit('offline-mode')
 }
 
-const emit = defineEmits<{
-  (e: 'offline-mode'): void
-}>()
 </script>
 
 <style scoped>

@@ -43,10 +43,9 @@
         <div class="mt-1 grid grid-cols-3 gap-3">
           <template v-for="provider in providers" :key="provider">
             <div
-              class="flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-colors"
+              class="flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-colors hover:border-primary-300 hover:bg-primary-50"
               :class="{
-                'border-primary-500 bg-primary-50 ring-2 ring-primary-500': selectedProvider === provider,
-                'hover:border-primary-300 hover:bg-primary-50': true
+                'border-primary-500 bg-primary-50 ring-2 ring-primary-500': selectedProvider === provider
               }"
               @click="selectedProvider = provider"
             >

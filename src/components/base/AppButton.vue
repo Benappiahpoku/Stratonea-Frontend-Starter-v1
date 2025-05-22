@@ -1,9 +1,7 @@
 <template>
   <button
     :type="type"
-    :class="[
-      'inline-flex items-center justify-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2',
-      'min-h-[48px] px-4', // Ghana-optimized touch target size
+    class="inline-flex items-center justify-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[48px] px-4" :class="[
       variantClasses,
       sizeClasses,
       { 
