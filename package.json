@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm:dev:vite\" \"npm:dev:typecheck\"",
     "dev:vite": "vite",
-    "dev:typecheck": "vue-tsc --noEmit --watch",
+    "dev:typecheck": "vue-tsc -b --noEmit --watch --pretty",
     "build": "npm run generate-icons && vue-tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest",
