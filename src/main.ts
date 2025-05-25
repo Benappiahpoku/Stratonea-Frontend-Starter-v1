@@ -4,6 +4,11 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import router from './router'
 import './style.css'
+import { FontAwesomeIcon } from './plugins/fontawesome.ts'
+import '@fortawesome/fontawesome-svg-core/styles.css' 
+import Toast, { toastOptions } from './plugins/toast.ts'
+import 'vue-toastification/dist/index.css'
+
 
 // Import base components
 import AppButton from './components/base/AppButton.vue'
@@ -27,6 +32,10 @@ app.component('AppInput', AppInput)
 app.component('ErrorBoundary', ErrorBoundary)
 app.component('LoadingSpinner', LoadingSpinner)
 app.component('OfflineIndicator', OfflineIndicator)
+app.component('font-awesome-icon', FontAwesomeIcon)
+app.use(Toast, toastOptions)
+
+
 
 // Use plugins
 app.use(pinia)

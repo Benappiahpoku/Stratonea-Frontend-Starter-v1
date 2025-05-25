@@ -5,22 +5,23 @@
     role="document"
   >
     <!-- Header with app logo/name -->
-    <header class="bg-white shadow-sm py-4" role="banner">
+    <header class= "bg-primary-600 shadow-sm py-4" role="banner">
       <div class="container mx-auto px-4">
         <router-link 
           to="/" 
           class="flex items-center gap-2 router-link"
           aria-label="Return to Stratonea homepage"
         >
-          <img 
+          <!-- <img 
             src="/icons/icon-96x96.png" 
             alt="Stratonea Logo" 
             class="w-8 h-8"
             loading="eager"
             width="32"
             height="32"
-          />
-          <span class="text-lg font-semibold text-gray-900">Stratonea</span>
+          /> -->
+          <StratoneaLogo  white/>
+          <span class="text-lg font-semibold  text-white">Stratonea</span>
         </router-link>
       </div>
     </header>
@@ -49,8 +50,9 @@
 </template>
 
 <script setup lang="ts">
+import StratoneaLogo from '@/components/StratoneaLogo.vue'
 import OfflineIndicator from '../components/base/OfflineIndicator.vue'
-import { useNetworkStatus } from '@/composables/useNetworkStatus'
+import { useNetworkStatus } from '@/composables/useNetworkStatus.ts'
 import { computed } from 'vue'
 
 // Network status integration for offline mode

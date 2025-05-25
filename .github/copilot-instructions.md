@@ -31,23 +31,23 @@ This document outlines the development standards for Stratonea projects, with sp
 
 ## Table of Contents
 
-1. [Development Workflow](#development-workflow)
-2. [Ghana-Specific Considerations](#ghana-specific-considerations)
-3. [Code Documentation Guidelines](#code-documentation-guidelines)
-4. [Code Writing Standards](#code-writing-standards)
-5. [TypeScript Best Practices](#typescript-best-practices)
-6. [Vue 3 Best Practices](#vue-3-best-practices)
-7. [Tailwind CSS Best Practices](#tailwind-css-best-practices)
-8. [Vite Best Practices](#vite-best-practices)
-9. [Offline First Strategy](#offline-first-strategy)
-10. [WhatsApp Integration](#whatsapp-integration)
-11. [Optimized Asset Loading](#optimized-asset-loading)
-12. [Regional Integration](#regional-integration)
-13. [Performance Benchmarks](#performance-benchmarks)
-14. [Testing Guidelines](#testing-guidelines)
-15. [SEO Best Practices](#seo-best-practices)
-16. [Integration Tips](#integration-tips)
-17. [Communication Guidelines](#communication-guidelines)
+1. [Development Workflow]
+2. [Ghana-Specific Considerations]
+3. [Code Documentation Guidelines]
+4. [Code Writing Standards]
+5. [TypeScript Best Practices]
+6. [Vue 3 Best Practices]
+7. [Tailwind CSS Best Practices]
+8. [Vite Best Practices]
+9. [Offline First Strategy]
+10. [WhatsApp Integration]
+11. [Optimized Asset Loading]
+12. [Regional Integration]
+13. [Performance Benchmarks]
+14. [Testing Guidelines]
+15. [SEO Best Practices]
+16. [Integration Tips]
+17. [Communication Guidelines]
 
 ## Development Workflow
 
