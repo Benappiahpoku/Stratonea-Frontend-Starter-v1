@@ -34,9 +34,9 @@
       
       <!-- Number -->
       <div class="flex items-center justify-between mb-2">
-        <span class="text-sm text-gray-600">Number: 0244314463</span>
+        <span class="text-sm text-gray-600">Number: 0594093926</span>
         <button 
-          @click="copyToClipboard('0244314463')"
+          @click="copyToClipboard('0594093926')"
           class="text-primary-600 text-sm hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded px-2 py-1"
         >
           <span class="flex items-center gap-1">
@@ -77,14 +77,14 @@
       aria-label="Close donation prompt"
       type="button"
     >
-      <font-awesome-icon icon="fa-solid fa-times" />
+      <font-awesome-icon icon="fa-solid fa-times" /> 
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
 
-import { useToast } from '@/composables/useToast.ts' 
+import { useToast } from '@/composables/useToast' 
 
 const emit = defineEmits<{
   (e: 'close'): void
