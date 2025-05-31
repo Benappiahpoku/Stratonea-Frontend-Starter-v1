@@ -3,7 +3,7 @@ interface Config {
 }
 
 const config: Config = {
-  projectName: 'vue-tailwind-boilerplate-v1'
+  projectName: 'stratonea-frontend-starter-v1'
 };
 
 export default config;
