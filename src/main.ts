@@ -14,7 +14,7 @@ import 'vue-toastification/dist/index.css'
 import AppButton from './components/base/AppButton.vue'
 import AppForm from './components/base/AppForm.vue'
 import AppInput from './components/base/AppInput.vue'
-import ErrorBoundary from './components/base/ErrorBoundary.vue'
+import ErrorBoundary from '././components/system/ErrorBoundary.vue'
 import LoadingSpinner from './components/base/LoadingSpinner.vue'
 import OfflineIndicator from './components/base/OfflineIndicator.vue'
 

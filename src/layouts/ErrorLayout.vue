@@ -1,14 +1,10 @@
 <template>
-  <div 
-    class="error-layout flex flex-col" 
-    :class="rootClasses"
-    role="document"
-  >
+  <div class="error-layout flex flex-col" :class="rootClasses" role="document">
     <!-- Header with app logo/name -->
-    <header class= "bg-primary-600 shadow-sm py-4" role="banner">
+    <header class="bg-primary-600 shadow-sm py-4" role="banner">
       <div class="container mx-auto px-4">
-        <router-link 
-          to="/" 
+        <router-link
+          to="/"
           class="flex items-center gap-2 router-link"
           aria-label="Return to Stratonea homepage"
         >
@@ -20,8 +16,8 @@
             width="32"
             height="32"
           /> -->
-          <StratoneaLogo  white/>
-          <span class="text-lg font-semibold  text-white">Stratonea</span>
+          <StratoneaLogo white />
+          <span class="text-lg font-semibold text-white">Stratonea</span>
         </router-link>
       </div>
     </header>
@@ -50,105 +46,105 @@
 </template>
 
 <script setup lang="ts">
-import StratoneaLogo from '@/components/StratoneaLogo.vue'
-import OfflineIndicator from '../components/base/OfflineIndicator.vue'
-import { useNetworkStatus } from '@/composables/useNetworkStatus.ts'
-import { computed } from 'vue'
+  import StratoneaLogo from '@/components/base/StratoneaLogo.vue'
+  import OfflineIndicator from '../components/base/OfflineIndicator.vue'
+  import { useNetworkStatus } from '@/composables/useNetworkStatus.ts'
+  import { computed } from 'vue'
 
-// Network status integration for offline mode
-const { networkInfo } = useNetworkStatus()
-const isOffline = computed(() => !networkInfo.value.isOnline)
-const connectionQuality = computed(() => networkInfo.value.connectionQuality)
+  // Network status integration for offline mode
+  const { networkInfo } = useNetworkStatus()
+  const isOffline = computed(() => !networkInfo.value.isOnline)
+  const connectionQuality = computed(() => networkInfo.value.connectionQuality)
 
-// Add network status classes to root element
-const rootClasses = computed(() => ({
-  'is-offline': isOffline.value,
-  [`connection-${connectionQuality.value}`]: true
-}))
+  // Add network status classes to root element
+  const rootClasses = computed(() => ({
+    'is-offline': isOffline.value,
+    [`connection-${connectionQuality.value}`]: true
+  }))
 </script>
 
 <style scoped>
-.error-layout {
-  background-color: theme('colors.gray.50');
-  min-height: 100vh;
-}
-
-.header {
-  background-color: white;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  padding: 1rem 0;
-}
-
-.container {
-  width: 100%;
-  max-width: theme('maxWidth.7xl');
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.router-link {
-  transition: color 0.2s;
-}
-
-.router-link:hover {
-  color: theme('colors.primary.DEFAULT');
-}
-
-.router-link:focus {
-  outline: 2px solid theme('colors.primary.DEFAULT');
-  outline-offset: 2px;
-}
-
-/* Mobile Optimizations */
-@media (max-width: 640px) {
-  .router-link {
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-  }
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
   .error-layout {
-    background-color: theme('colors.gray.900');
+    background-color: theme('colors.gray.50');
+    min-height: 100vh;
   }
 
   .header {
-    background-color: theme('colors.gray.800');
-    border-color: theme('colors.gray.700');
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    padding: 1rem 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: theme('maxWidth.7xl');
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .router-link {
+    transition: color 0.2s;
   }
 
   .router-link:hover {
-    color: theme('colors.primary.500');
-  }
-}
-
-/* Network Status Indicators */
-.is-offline .content {
-  border: 2px solid theme('colors.amber.500');
-}
-
-.connection-poor .content {
-  background-color: theme('colors.amber.50');
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: more) {
-  .router-link {
-    color: black;
-    outline-width: 3px;
+    color: theme('colors.primary.DEFAULT');
   }
 
-  :is([data-theme="dark"]) .router-link {
-    color: white;
+  .router-link:focus {
+    outline: 2px solid theme('colors.primary.DEFAULT');
+    outline-offset: 2px;
   }
 
-  .back-button {
-    background-color: theme('colors.blue.800');
-    border: 2px solid theme('colors.blue.200');
+  /* Mobile Optimizations */
+  @media (max-width: 640px) {
+    .router-link {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+    }
   }
-}
+
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    .error-layout {
+      background-color: theme('colors.gray.900');
+    }
+
+    .header {
+      background-color: theme('colors.gray.800');
+      border-color: theme('colors.gray.700');
+    }
+
+    .router-link:hover {
+      color: theme('colors.primary.500');
+    }
+  }
+
+  /* Network Status Indicators */
+  .is-offline .content {
+    border: 2px solid theme('colors.amber.500');
+  }
+
+  .connection-poor .content {
+    background-color: theme('colors.amber.50');
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: more) {
+    .router-link {
+      color: black;
+      outline-width: 3px;
+    }
+
+    :is([data-theme='dark']) .router-link {
+      color: white;
+    }
+
+    .back-button {
+      background-color: theme('colors.blue.800');
+      border: 2px solid theme('colors.blue.200');
+    }
+  }
 </style>

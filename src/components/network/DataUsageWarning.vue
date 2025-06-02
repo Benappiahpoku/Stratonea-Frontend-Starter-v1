@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useNetworkStatus } from '../composables/useNetworkStatus'
+import { useNetworkStatus } from '../../composables/useNetworkStatus'
 
 interface Props {
   sessionData?: number // bytes transferred in current session

@@ -96,8 +96,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { WebVitalsService, type WebVitalMetric } from '../services/WebVitalsService'
-import { useNetworkStatus } from '../composables/useNetworkStatus'
+import { WebVitalsService, type WebVitalMetric } from '@/services/WebVitalsService.ts'
+import { useNetworkStatus } from '@/composables/useNetworkStatus.ts'
 
 const webVitals = WebVitalsService.getInstance()
 const networkStatus = useNetworkStatus()

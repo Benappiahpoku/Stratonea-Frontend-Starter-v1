@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import { ref, computed, onErrorCaptured, watch } from 'vue'
 import { useNetworkStatus } from '@/composables/useNetworkStatus'
-import AppButton from './AppButton.vue'
+import AppButton from '../base/AppButton.vue'
 
 // Props
 const props = defineProps<{

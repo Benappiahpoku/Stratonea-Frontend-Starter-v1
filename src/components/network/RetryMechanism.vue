@@ -87,7 +87,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watchEffect } from 'vue'
-import { useNetworkStatus } from '../composables/useNetworkStatus'
+import { useNetworkStatus } from '../../composables/useNetworkStatus'
 
 const props = withDefaults(defineProps<{
   error?: Error

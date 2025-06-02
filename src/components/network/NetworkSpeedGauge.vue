@@ -76,7 +76,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useNetworkStatus } from '../composables/useNetworkStatus'
+import { useNetworkStatus } from '../../composables/useNetworkStatus'
 
 interface Props {
   showDetails?: boolean

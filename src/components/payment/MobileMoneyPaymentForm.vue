@@ -124,9 +124,9 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useMobileMoneyPayment } from '../composables/useMobileMoneyPayment'
-import { useNetworkStatus } from '../composables/useNetworkStatus'
-import type { MobileMoneyProvider } from '../composables/useMobileMoneyPayment'
+import { useMobileMoneyPayment } from '../../composables/useMobileMoneyPayment'
+import { useNetworkStatus } from '../../composables/useNetworkStatus'
+import type { MobileMoneyProvider } from '../../composables/useMobileMoneyPayment'
 
 const { networkInfo } = useNetworkStatus()
 const { 
