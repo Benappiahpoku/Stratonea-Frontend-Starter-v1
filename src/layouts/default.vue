@@ -24,22 +24,24 @@
 </template>
 
 <script setup lang="ts">
-  // Imports
-  import { useNetworkStatus } from '@/composables/useNetworkStatus'
-  import { ref } from 'vue'
-  import OfflineIndicator from '@/components/base/OfflineIndicator.vue'
 
-  import Navigation from '@/components/layout/Navigation.vue'
-
-  import Footer from '@/components/layout/Footer.vue'
-  import Donation from '@/components/donation/Donation.vue'
 
   //== To Always See and Edit Donation Control ==//
   // const showDonation = ref(true)
 
   //== To Always See and Edit Donation Control ==//
 
+
+ // ===== File-Level Imports =====
+  import { useNetworkStatus } from '@/composables/useNetworkStatus'
+  import { ref } from 'vue'
+  import OfflineIndicator from '@/components/base/OfflineIndicator.vue'
+  import Navigation from '@/components/layout/Navigation.vue'
+  import Footer from '@/components/layout/Footer.vue'
+  import Donation from '@/components/donation/Donation.vue'
+
   // ===== Constants & Config =====
+  // Keys for localStorage to track donation modal state
   const DONATION_MODAL_KEY = 'stratonea_donation_last_closed'
   const DONATION_MODAL_FIRST_SEEN_KEY = 'stratonea_first_seen'
   const DONATION_MODAL_INTERVAL = 7 * 24 * 60 * 60 * 1000 // 7 days in ms
@@ -47,8 +49,9 @@
   // ===== Helper Functions =====
 
   /**
-   * Returns the timestamp of the user's first visit.
+   * Returns the timestamp (ms) of the user's first visit.
    * If not set, sets it to now and returns now.
+   * This ensures we know when the user first started using the app.
    */
   function getOrSetFirstSeen(): number {
     let firstSeen = localStorage.getItem(DONATION_MODAL_FIRST_SEEN_KEY)
@@ -68,9 +71,16 @@
   function shouldShowDonationModal(): boolean {
     const now = Date.now()
     const firstSeen = getOrSetFirstSeen()
-    // Don't show until 7 days after first visit
-    if (now - firstSeen < DONATION_MODAL_INTERVAL) return false
 
+    // ===== [New Feature] START =====
+    // Only show if 7 days have passed since first visit
+    if (now - firstSeen < DONATION_MODAL_INTERVAL) {
+      // Not enough time has passed; don't show modal
+      return false
+    }
+    // ===== [New Feature] END =====
+
+    // After first eligible show, only show every 7 days after last closed
     const lastClosed = localStorage.getItem(DONATION_MODAL_KEY)
     if (!lastClosed) return true // Never closed before, show after 7 days
     const lastClosedTime = parseInt(lastClosed, 10)
@@ -79,23 +89,29 @@
 
   /**
    * Records the current time as the last time the donation modal was closed.
+   * This prevents the modal from showing again until another 7 days have passed.
    */
   function recordDonationModalClosed(): void {
     localStorage.setItem(DONATION_MODAL_KEY, Date.now().toString())
   }
 
   // ===== Main Logic =====
+
+  // Controls whether the donation modal is visible
   const showDonation = ref(shouldShowDonationModal())
 
+  /**
+   * Handles closing the donation modal.
+   * - Records the close time.
+   * - Hides the modal.
+   */
   function handleDonationClose() {
     recordDonationModalClosed()
     showDonation.value = false
   }
 
-  // ==== End Donation Control in Parent Component //
-
+  // Get network info for offline indicator
   const { networkInfo } = useNetworkStatus()
- 
 </script>
 
 <style>

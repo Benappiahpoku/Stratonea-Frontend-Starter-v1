@@ -49,7 +49,10 @@
         >
           New version available
         </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
+        <p
+         v-else-if="needRefresh"
+        class="text-sm text-gray-500 dark:text-gray-400">
+          
           Update to get the latest features and improvements
         </p>
       </div>
@@ -74,22 +77,56 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+// ===== File-Level Documentation =====
+// This component shows a notification for PWA offline readiness or update availability.
+// "Offline ready" notification is shown only once per user (persisted in localStorage).
+
+import { ref, computed, watch, onMounted } from 'vue'
 import { usePWA } from '@/composables/usePWA'
 
-// Get PWA functionality from composable
-const { offlineReady, needRefresh, updateServiceWorker } = usePWA()
+// ===== Constants & Config =====
+const OFFLINE_READY_KEY = 'stratonea-offline-ready-shown'
 
-// Track update state
+// ===== State =====
+const { offlineReady, needRefresh, updateServiceWorker } = usePWA()
 const updating = ref(false)
 const dismissed = ref(false)
+const offlineReadyShown = ref(false)
 
-// Determine if the notification should be shown
-const showNotification = computed(() => 
-  !dismissed.value && (offlineReady.value || needRefresh.value)
+// ===== [New Feature] START =====
+// On mount, check if the offline ready notification was already shown
+onMounted(() => {
+  offlineReadyShown.value = !!localStorage.getItem(OFFLINE_READY_KEY)
+})
+
+// Watch for offlineReady becoming true, and mark as shown
+watch(
+  () => offlineReady.value,
+  (newVal) => {
+    if (newVal && !offlineReadyShown.value) {
+      localStorage.setItem(OFFLINE_READY_KEY, '1')
+      offlineReadyShown.value = true
+    }
+  }
+)
+// ===== [New Feature] END =====
+
+// ===== Main Logic =====
+/**
+ * Determines if the notification should be shown.
+ * - Show if: (needRefresh is true)
+ * - Or: (offlineReady is true AND user has never seen it before)
+ * - Hide if: dismissed, or offlineReady has already been shown before
+ */
+const showNotification = computed(() =>
+  !dismissed.value &&
+  (
+    needRefresh.value ||
+    (offlineReady.value && !offlineReadyShown.value)
+  )
 )
 
-// Handle the update process
+// ===== Actions =====
 const update = async () => {
   updating.value = true
   try {
@@ -101,9 +138,13 @@ const update = async () => {
   }
 }
 
-// Close the notification
 const close = () => {
   dismissed.value = true
+  // If closing offlineReady, mark as shown so it never appears again
+  if (offlineReady.value && !offlineReadyShown.value) {
+    localStorage.setItem(OFFLINE_READY_KEY, '1')
+    offlineReadyShown.value = true
+  }
 }
 </script>
 
