@@ -9,6 +9,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import Toast, { toastOptions } from './plugins/toast.ts'
 import 'vue-toastification/dist/index.css'
 
+// Import Vercel Analytics for pageview/event tracking
+import { inject } from "@vercel/analytics"
+
 
 // Import base components
 import AppButton from './components/base/AppButton.vue'
@@ -40,6 +43,10 @@ app.use(Toast, toastOptions)
 // Use plugins
 app.use(pinia)
 app.use(router)
+
+// Initialize Vercel Analytics (tracks pageviews automatically)
+inject();
+
 
 // Mount the app
 app.mount('#app')
