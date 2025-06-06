@@ -16,6 +16,8 @@ import {
     faBell,
     faCopy, 
     faTimes,
+    faEnvelope,
+    faMobileScreen,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { 
@@ -44,6 +46,8 @@ library.add(
     faDownload,
     faCopy, 
     faTimes,
+    faEnvelope,
+    faMobileScreen,
     // Regular icons
     farBell,
     faCircle,
