@@ -6,7 +6,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
         <!-- Contact Section -->
         <div class="space-y-4">
-          <h3 class="text-lg font-semibold">Contact Us</h3>
+          <h3 class="text-lg font-semibold">Help Us Improve - Share Your Feedback</h3>
           <div class="space-y-3">
             <!-- WhatsApp -->
             <a href="https://wa.me/233594093926" target="_blank" rel="noopener noreferrer"
