@@ -11,6 +11,8 @@
       <router-view />
     </main>
 
+    <ActionHub />
+
     <!-- Donation content -->
     <Donation v-if="showDonation" @close="handleDonationClose" />
 
@@ -38,6 +40,7 @@
   import OfflineIndicator from '@/components/base/OfflineIndicator.vue'
   import Navigation from '@/components/layout/Navigation.vue'
   import Footer from '@/components/layout/Footer.vue'
+import ActionHub from '@/components/layout/ActionHub.vue'
   import Donation from '@/components/donation/Donation.vue'
 
   // ===== Constants & Config =====

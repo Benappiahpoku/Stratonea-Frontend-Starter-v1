@@ -8,9 +8,9 @@
           <span>Home</span>
         </router-link>
 
-        <button @click="handleNewReceipt" class="flex items-center space-x-2 text-primary-600 hover:text-primary-700">
+        <button @click="handleNewInvoice" class="flex items-center space-x-2 text-primary-600 hover:text-primary-700">
           <font-awesome-icon icon="fa-solid fa-plus-circle" class="text-xl" />
-          <span>New Receipt</span>
+          <span>New Invoice</span>
         </button>
 
         <button @click="shareWhatsApp" class="flex items-center space-x-2 text-green-600 hover:text-green-700">
@@ -25,32 +25,58 @@
       </div>
     </div>
 
-    <!-- Mobile View -->
-    <div class="md:hidden flex justify-around items-center h-16">
-      <router-link to="/" class="text-primary-600 hover:text-primary-700">
-        <font-awesome-icon icon="fa-solid fa-home" class="text-2xl" />
+
+    <!-- Mobile View (Updated with text labels) -->
+    <div class="md:hidden flex justify-around items-center h-20 py-2">
+      <router-link to="/" class="flex flex-col items-center text-primary-600 hover:text-primary-700">
+        <font-awesome-icon icon="fa-solid fa-home" class="text-2xl mb-1" />
+        <span class="text-xs">Home</span>
       </router-link>
 
-      <button @click="handleNewReceipt" class="text-primary-600 hover:text-primary-700">
-        <font-awesome-icon icon="fa-solid fa-plus-circle" class="text-2xl" />
+      <button @click="handleNewInvoice" class="flex flex-col items-center text-primary-600 hover:text-primary-700">
+        <font-awesome-icon icon="fa-solid fa-plus-circle" class="text-2xl mb-1" />
+        <span class="text-xs">New Invoice</span>
       </button>
 
-      <button @click="shareWhatsApp" class="text-green-600 hover:text-green-700">
-        <font-awesome-icon icon="fa-brands fa-whatsapp" class="text-2xl" />
+      <button @click="shareWhatsApp" class="flex flex-col items-center text-green-600 hover:text-green-700">
+        <font-awesome-icon icon="fa-brands fa-whatsapp" class="text-2xl mb-1" />
+        <span class="text-xs">Share WhatsApp</span>
       </button>
 
-      <button @click="downloadPDF" class="text-primary-600 hover:text-primary-700">
-        <font-awesome-icon icon="fa-solid fa-download" class="text-2xl" />
+      <button @click="downloadPDF" class="flex flex-col items-center text-primary-600 hover:text-primary-700">
+        <font-awesome-icon icon="fa-solid fa-download" class="text-2xl mb-1" />
+        <span class="text-xs">Download PDF</span>
       </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
-
+// ===== File-Level Documentation =====
+// ActionHub.vue: Floating action bar for navigation and invoice actions.
+// Receives invoice data and logo as props. Emits events for parent to handle logic.
 // Added new invoice handling with page refresh functionality.
 import { useRouter } from 'vue-router'
+
+// ===== Constants & Config =====
+const router = useRouter()
+
+
+async function handleNewInvoice() {
+  try {
+    emit('reset-invoice-counter')
+    // First, navigate to /new-invoice
+    await router.push('/new-invoice')
+
+    // Then refresh the page
+    window.location.reload()
+
+    console.log('[ActionHub] Navigated to /new-invoice and refreshed page')
+  } catch (error) {
+    console.error('[ActionHub] Navigation error:', error)
+  }
+}
+
 // ===== [New Feature] START =====
 /**
  * Props for ActionHub.
@@ -59,11 +85,11 @@ import { useRouter } from 'vue-router'
  */
 withDefaults(
   defineProps<{
-    form?: any
+    invoice?: any
     companyLogo?: string | null
   }>(),
   {
-    form: undefined,
+    invoice: undefined,
     companyLogo: null
   }
 )
@@ -71,6 +97,7 @@ withDefaults(
 const emit = defineEmits<{
   (e: 'download-pdf'): void
   (e: 'share-whatsapp'): void
+  (e: 'reset-invoice-counter'): void
 }>()
 // ===== [New Feature] END =====
 
@@ -91,30 +118,4 @@ function downloadPDF() {
   emit('download-pdf')
 }
 // ===== [New Feature] END =====
-
-
-
-// ===== Constants & Config =====
-const router = useRouter()
-
-
-async function handleNewReceipt() {
-  try {
-    // First, navigate to /new-invoice
-    await router.push('/new-receipt')
-
-    // Then refresh the page
-    window.location.reload()
-
-    console.log('[ActionHub] Navigated to /new-invoice and refreshed page')
-  } catch (error) {
-    console.error('[ActionHub] Navigation error:', error)
-  }
-}
-
-
-
-
-
-
 </script>

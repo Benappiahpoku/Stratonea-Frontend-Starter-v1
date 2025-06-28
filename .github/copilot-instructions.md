@@ -66,6 +66,9 @@ always install npm install -D tailwindcss@3.4.1 postcss@8.4.35 autoprefixer@10.4
 16. [Integration Tips]
 17. [Communication Guidelines]
 
+
+## Keyboard word replacement
+when i write "nc" it means "need clarification ask yes or no questions"
 ## Development Workflow
 
 1. **Design-First Approach** _(Required)_
