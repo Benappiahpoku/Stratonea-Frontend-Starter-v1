@@ -90,29 +90,6 @@
             "purpose": "any maskable"
         }
     ],
-    "shortcuts": [
-        {
-            "name": "Home",
-            "url": "/",
-            "icons": [
-                {
-                    "src": "/icons/home-96x96.png",
-                    "sizes": "96x96"
-                }
-            ]
-        },
-        {
-            "name": "Contact",
-            "url": "/contact",
-            "icons": [
-                {
-                    "src": "/icons/contact-96x96.png",
-                    "sizes": "96x96"
-                }
-            ]
-        }
-    ],
-    "prefer_related_applications": false,
     "related_applications": [],
     "screenshots": [
         {
@@ -120,7 +97,7 @@
             "sizes": "1080x1920",
             "type": "image/jpeg",
             "platform": "narrow",
-            "label": "Home screen of Stratonea App"
+            "label": "Home screen of Naachiaa App"
         }
     ],
     "share_target": {
@@ -147,8 +124,6 @@
         "minimal-ui"
     ],
     "scope": "/",
-    "lang": "en-GH",
-    "dir": "ltr",
     "launch_handler": {
         "client_mode": [
             "navigate-existing",

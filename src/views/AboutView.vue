@@ -1,89 +1,102 @@
 <template>
-  <main class="min-h-screen p-4 md:p-8 max-w-4xl mx-auto">
-    <!-- Profile Image Section -->
+  <main class="min-h-screen p-4 max-w-4xl mx-auto">
+    <!-- ===== [PROFILE IMAGE] START ===== -->
+    <!-- Simple profile image with fallback for slow connections -->
     <div class="mb-8 flex justify-center">
-      <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg">
+      <div class="w-48 h-48 rounded-full overflow-hidden shadow-lg">
         <img
+          v-if="!imageError"
           src="/src/assets/images/benjaminprofilepicOriginal.jpg"
           alt="Benjamin Appiah-Poku"
           class="w-full h-full object-cover"
           loading="lazy"
+          @error="imageError = true"
         />
+        <!-- Fallback when image fails to load (common on slow connections) -->
+        <div v-else class="w-full h-full bg-primary flex items-center justify-center text-white">
+          <span class="text-4xl">👤</span>
+        </div>
       </div>
     </div>
+    <!-- ===== [PROFILE IMAGE] END ===== -->
 
-    <!-- About Section -->
-    <section class="space-y-6 text-center md:text-left">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-6 flex items-center justify-center md:justify-start">
+    <!-- ===== [ABOUT CONTENT] START ===== -->
+    <!-- Main content section -->
+    <section class="space-y-6 text-center">
+      <!-- Page title -->
+      <h1 class="text-3xl font-bold text-primary mb-6">
         <span class="mr-2">👤</span> About Benjamin
       </h1>
 
-      <!-- Bio Paragraphs with Mobile-First Design -->
-      <div class="space-y-4 text-lg text-gray-700 leading-relaxed">
-        <p class="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-          Benjamin is a multifaceted entrepreneur and consultant holding leadership positions
-          in construction, mining, and pharmaceuticals.
+      <!-- Bio paragraphs - simple and clean -->
+      <div class="space-y-4 text-lg text-gray-700">
+        <p class="bg-white p-4 rounded-lg shadow-sm">
+          Benjamin is an entrepreneur and consultant in construction, mining, and pharmaceuticals.
         </p>
 
-        <p class="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-          He also consults on hotel developments across Africa. His academic background—spanning
-          Management, Economics, Law, and Computer Science—gives him a rare mix of strategy and tech.
+        <p class="bg-white p-4 rounded-lg shadow-sm">
+          He consults on hotel developments across Africa with a background in Management, Economics, Law, and Computer Science.
         </p>
 
-        <p class="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-          Through Stratonea Ltd, he helps small and growing businesses thrive by improving strategy,
-          operations, and digital systems.
-        </p>
-
-        <p class="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-          He's passionate about simplifying complexity and building sustainable companies.
+        <p class="bg-white p-4 rounded-lg shadow-sm">
+          Through Stratonea Ltd, he helps businesses improve strategy, operations, and digital systems.
         </p>
       </div>
 
-      <!-- Contact Link with WhatsApp Integration -->
-      <div class="mt-8 flex flex-col items-center md:items-start space-y-4">
+      <!-- Contact buttons with Ghana-optimized WhatsApp -->
+      <div class="mt-8 space-y-4">
+        <!-- Website link -->
         <a
           href="https://www.benappiahpoku.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-6 py-3 text-lg font-medium text-white bg-primary hover:bg-primary-dark rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
+          class=" w-full max-w-sm mx-auto px-6 py-3 text-white bg-primary hover:bg-primary-dark rounded-full transition-colors min-h-[48px] flex items-center justify-center"
         >
-          <span class="mr-2">🌐</span>
-          Learn more at benappiahpoku.com
+          🌐 Visit Website
         </a>
 
+        <!-- WhatsApp button -->
         <button
-          @click="shareOnWhatsApp"
-          class="inline-flex items-center px-6 py-3 text-lg font-medium text-primary bg-white border-2 border-primary hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
+          @click="openWhatsApp"
+          class="block w-full max-w-sm mx-auto px-6 py-3 text-primary bg-white border-2 border-primary hover:bg-primary hover:text-white rounded-full transition-colors min-h-[48px]"
         >
-          <span class="mr-2">💬</span>
-          Connect on WhatsApp
+          💬 WhatsApp Me
         </button>
       </div>
     </section>
+    <!-- ===== [ABOUT CONTENT] END ===== -->
   </main>
 </template>
 
 <script setup lang="ts">
-function shareOnWhatsApp() {
-  const message = "Hi Benjamin, I'd like to connect with you regarding business consulting."
-  const url = `https://wa.me/+233?text=${encodeURIComponent(message)}`
-  window.open(url, '_blank')
+import {ref} from 'vue'
+// ===== SIMPLE STATE =====
+// Track if image fails to load (common on slow Ghana connections)
+const imageError = ref<boolean>(false)
+
+// ===== WHATSAPP FUNCTION =====
+// Simple WhatsApp function optimized for Ghana users
+function openWhatsApp(): void {
+  const message = "Hi Benjamin, I'd like to connect about business consulting."
+  // Using Ghana country code (+233) - replace with your actual number
+  const phoneNumber = "+233" // Add your phone number here
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  
+  // Open WhatsApp in new tab
+  window.open(whatsappUrl, '_blank')
 }
 </script>
 
 <style scoped>
-/* Smooth transition for interactive elements */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+/* ===== SIMPLE STYLES ===== */
+/* Smooth transitions for buttons */
+.transition-colors {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Progressive enhancement for better devices/connections */
-@media (min-width: 768px) {
-  .backdrop-blur-sm {
-    backdrop-filter: blur(8px);
-  }
+/* Ensure minimum touch targets for mobile users */
+button, a {
+  min-height: 48px;
+  min-width: 48px;
 }
 </style>

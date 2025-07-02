@@ -68,7 +68,19 @@ always install npm install -D tailwindcss@3.4.1 postcss@8.4.35 autoprefixer@10.4
 
 
 ## Keyboard word replacement
-when i write "nc" it means "need clarification ask yes or no questions"
+- when i write "nc" it means "need clarification ask yes or no questions"
+- When I type “sc”, it means: “Please simplify and shorten the code. I’m trying to learn, so make it easier to read and understand.”
+- When I type “ka”, it means: "Keep all design, content, and functionality and  make the file sc."
+- When I type "lt", it is an abbreviation for let's think.Do not write any any any code!!!
+
+## General instruction _(Required)_
+Avoid overly verbose or advanced code unless I request it. Prioritize clarity and simplicity over cleverness.
+
+## Data Saving & Management
+- Always use localforage for listing, adding, editing and deleting data
+- I will let you know if i want to use Pinia Explicitly
+- Remind me to create the ConfirmDeleteModal.vue, EditModal.vue, AddModal.vue
+
 ## Development Workflow
 
 1. **Design-First Approach** _(Required)_

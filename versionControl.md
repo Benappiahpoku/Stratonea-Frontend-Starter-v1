@@ -23,3 +23,10 @@ git branch -d dev
 
 <!-- delete branch on github -->
 git push origin --delete dev
+
+## git ignore
+<!-- clear Git’s index and re-track only what should be tracked (per your .gitignore) after git init-->
+git rm -r --cached .
+
+<!-- see all currently tracked files -->
+git status --ignored
