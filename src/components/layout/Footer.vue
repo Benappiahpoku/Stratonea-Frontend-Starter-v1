@@ -50,11 +50,11 @@
         <p class="text-sm text-primary-200">
           © {{ new Date().getFullYear() }} Created with
           <span class="mx-1 animate-pulse">❤️</span>
-          by TekLumen
+          by <a href="https://www.teklumin.com/">TekLumin </a>
         </p>
         <div class="flex items-center justify-center gap-2 text-xs text-primary-200">
           <span>Made in</span>
-          <img src="/ghana-flag.png" alt="Ghana Flag" class="w-4 h-4 rounded-sm" />
+          <img src="/ghana-flag.webp" alt="Ghana Flag" class="w-4 h-4 rounded-sm" />
           <span>Ghana</span>
         </div>
       </div>

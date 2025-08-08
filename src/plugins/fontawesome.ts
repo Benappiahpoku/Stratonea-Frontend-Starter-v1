@@ -25,18 +25,29 @@ import {
     faBox,
     faListAlt,
     faCircle as fasCircle,
-    // ===== [New Icons] START =====
-    faChartBar,          // For Sales card icon
-    faUsers,             // For Customers card icon
-    faWarehouse,         // For Stock card icon
-    faBuilding,          // For Company Info card icon
-    faChartLine,         // For Reports card and stats
-    faClock,             // For pending orders stat
-    faExclamationTriangle, // For low stock alert (alternative name)
-    faUserPlus,          // For new customer activity
-    faShoppingCart,      // For sales activity
-    faInfoCircle,        // For general info/fallback activity
-    // ===== [New Icons] END =====
+    faChartBar,
+    faUsers,
+    faUserGroup,
+    faWarehouse,
+    faBuilding,
+    faChartLine,
+    faClock,
+    faExclamationTriangle,
+    faUserPlus,
+    faShoppingCart,
+    faInfoCircle,
+    faEdit,
+    faEllipsisV,
+    faWifi,
+    faHeart,
+    faFileInvoice,
+    faShieldHalved,
+    faMobileScreenButton,
+    faCheck,
+    faChevronUp,
+    faChevronDown,
+    faRocket
+
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -74,7 +85,7 @@ library.add(
     faTrash,
     faTriangleExclamation,
     faReceipt,
-    // ===== [New Icons] START =====
+    faEdit,
     faChartBar,
     faUsers,
     faWarehouse,
@@ -85,7 +96,17 @@ library.add(
     faUserPlus,
     faShoppingCart,
     faInfoCircle,
-    // ===== [New Icons] END =====
+    faEllipsisV,
+    faUserGroup,
+    faWifi,
+    faHeart,
+    faFileInvoice,
+    faShieldHalved,
+    faMobileScreenButton,
+    faCheck,
+    faChevronUp,
+    faChevronDown,
+    faRocket,
     // Regular icons
     farBell,
     fasCircle,

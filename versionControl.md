@@ -30,3 +30,8 @@ git rm -r --cached .
 
 <!-- see all currently tracked files -->
 git status --ignored
+
+## Deleting git folder
+
+<!-- delete git folder -->
+rm -rf .git
